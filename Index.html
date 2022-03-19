@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch JSON from API and map data</title>
+
+</head>
+<body>
+
+    
+    <p>
+    Weather: <span id="data_main_weather"></span>    
+    </br>
+    Min Temperature: <span id="data_temp_min"></span>
+    </br>
+    Max Temperature: <span id="data_temp_max"></span>
+    </br>
+
+    </p>
+
+    <script>
+        const api_url = "http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=2663d341a1b13936445f312b7a504435"
+        async function getAPI() {
+        const response = await fetch(api_url)
+        const data = await response.json();
+        const { main , temp_min , temp_max , weather } = data;
+        console.log(data)
+        console.log(data.weather[0].main)
+        document.getElementById("data_main_weather").textContent = weather[0].main; 
+        document.getElementById("data_temp_min").textContent = main.temp_max;
+        document.getElementById("data_temp_max").textContent = main.temp_min;
+        }
+    
+        getAPI();
+    </script>
+</body>
+</html>
